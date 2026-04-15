@@ -1,4 +1,5 @@
 import { UtensilsCrossed, Phone, Mail, MapPin, Facebook, Instagram, Twitter } from 'lucide-react';
+import { PHOTO_CREDITS } from '@/constants';
 
 export default function Footer() {
   return (
@@ -79,7 +80,9 @@ export default function Footer() {
 
         <div className="pt-8 border-top border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
           <p>© {new Date().getFullYear()} Asap Foods. All Rights Reserved.</p>
-          <p>Built with ❤️ for Ghanaian Cuisine</p>
+          <p>Food photos by {PHOTO_CREDITS.slice(0, 3).map((p, i) => (
+            <a key={p.name} href={p.url} target="_blank" rel="noopener" className="text-orange-500 hover:text-orange-400">{p.name}</a>
+          )).reduce((acc: any[], x) => acc === null ? [x] : [...acc, ', ', x], null)} on <a href="https://www.pexels.com" target="_blank" rel="noopener" className="text-orange-500 hover:text-orange-400">Pexels</a></p>
         </div>
       </div>
     </footer>

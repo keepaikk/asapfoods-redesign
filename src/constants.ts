@@ -16,7 +16,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Savory fried rice with vegetables and your choice of protein.',
     price: 40,
     category: 'Fried Rice',
-    image: 'https://picsum.photos/seed/friedrice/800/600',
+    image: 'https://images.pexels.com/photos/32612771/pexels-photo-32612771.jpeg?auto=compress&cs=tinysrgb&w=800',
     featured: true,
     popular: true,
   },
@@ -26,7 +26,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Classic Ghanaian Jollof rice, spicy and flavorful.',
     price: 40,
     category: 'Jollof',
-    image: 'https://picsum.photos/seed/jollof-dish-menu/800/600',
+    image: 'https://images.pexels.com/photos/13915043/pexels-photo-13915043.jpeg?auto=compress&cs=tinysrgb&w=800',
     popular: true,
   },
   {
@@ -35,7 +35,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Traditional rice and beans dish served with shito and sides.',
     price: 40,
     category: 'Wakye',
-    image: 'https://picsum.photos/seed/wakye/800/600',
+    image: 'https://images.pexels.com/photos/32612769/pexels-photo-32612769.jpeg?auto=compress&cs=tinysrgb&w=800',
     popular: true,
   },
   {
@@ -44,7 +44,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Delicious spaghetti served with well-seasoned chicken.',
     price: 40,
     category: 'Offers',
-    image: 'https://picsum.photos/seed/spaghetti/800/600',
+    image: 'https://images.pexels.com/photos/9814666/pexels-photo-9814666.jpeg?auto=compress&cs=tinysrgb&w=800',
   },
   {
     id: 'plain-rice-1',
@@ -52,7 +52,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Steamed plain rice served with stew or gravy.',
     price: 35,
     category: 'Plain Rice',
-    image: 'https://picsum.photos/seed/plainrice/800/600',
+    image: 'https://images.pexels.com/photos/8994586/pexels-photo-8994586.jpeg?auto=compress&cs=tinysrgb&w=800',
   },
   {
     id: 'ampesi-1',
@@ -60,8 +60,19 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Boiled yam or plantain served with garden egg stew or palava sauce.',
     price: 45,
     category: 'Ampesi',
-    image: 'https://picsum.photos/seed/ampesi/800/600',
+    image: 'https://images.pexels.com/photos/27556971/pexels-photo-27556971.jpeg?auto=compress&cs=tinysrgb&w=800',
   },
 ];
 
+export const HERO_IMAGE = 'https://images.pexels.com/photos/18805640/pexels-photo-18805640.jpeg?auto=compress&cs=tinysrgb&w=1000';
+
 export const CATEGORIES = ['All', 'Fried Rice', 'Plain Rice', 'Ampesi', 'Jollof', 'Wakye', 'Offers'];
+
+export const PHOTO_CREDITS = [
+  { name: 'J KREATOR', url: 'https://www.pexels.com/@jkreat0r' },
+  { name: "Keesha's Kitchen", url: 'https://www.pexels.com/@keesha-s-kitchen-22731136' },
+  { name: 'Merkhat Amangeldinov', url: 'https://www.pexels.com/@merkhat-amangeldinov-2301120' },
+  { name: 'Carlos Lopez', url: 'https://www.pexels.com/@carlos-lopez-117694035' },
+  { name: 'I Own My Food Art', url: 'https://www.pexels.com/@i-own-my-food-art-76108785' },
+  { name: 'Snappr', url: 'https://www.pexels.com/@snappr' },
+];
