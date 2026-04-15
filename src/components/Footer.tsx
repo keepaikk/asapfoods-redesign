@@ -10,7 +10,7 @@ export default function Footer() {
           <div className="space-y-6">
             <div className="flex items-center gap-2 text-white">
               <UtensilsCrossed className="h-8 w-8 text-orange-500" />
-              <span className="text-2xl font-bold tracking-tighter">ASAP FOODS</span>
+              <span className="text-2xl font-bold tracking-tighter">JOVIVA FOODS</span>
             </div>
             <p className="text-sm leading-relaxed text-gray-400">
               Bringing the authentic flavors of Ghana to your doorstep. Quality ingredients, traditional recipes, and fast delivery.
@@ -19,11 +19,11 @@ export default function Footer() {
               <a href="#" className="h-10 w-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-orange-500 hover:text-white transition-all">
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="#" className="h-10 w-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-orange-500 hover:text-white transition-all">
+              <a href="https://www.instagram.com/jovivafoods" target="_blank" className="h-10 w-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-pink-500 hover:text-white transition-all">
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="#" className="h-10 w-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-orange-500 hover:text-white transition-all">
-                <Twitter className="h-5 w-5" />
+              <a href="https://www.tiktok.com/@jovivafoods" target="_blank" className="h-10 w-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-white hover:text-black transition-all text-xs font-bold">
+                Tik
               </a>
             </div>
           </div>
@@ -64,15 +64,15 @@ export default function Footer() {
             <ul className="space-y-4 text-sm">
               <li className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 text-orange-500 shrink-0" />
-                <span>Ablekuma, Accra, Ghana</span>
+                <span>Kwabenya, Accra, Ghana</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="h-5 w-5 text-orange-500 shrink-0" />
-                <a href="tel:+233548651163" className="hover:text-orange-500 transition-colors">0548651163</a>
+                <a href="tel:+233554984950" className="hover:text-orange-500 transition-colors">0554984950 / 0245897533</a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="h-5 w-5 text-orange-500 shrink-0" />
-                <a href="mailto:info@asapfoodsgh.com" className="hover:text-orange-500 transition-colors">info@asapfoodsgh.com</a>
+                <a href="mailto:jovivafoods@gmail.com" className="hover:text-orange-500 transition-colors">jovivafoods@gmail.com</a>
               </li>
             </ul>
           </div>

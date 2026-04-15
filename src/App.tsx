@@ -67,7 +67,7 @@ export default function App() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-[40px] p-12 md:p-20 text-center text-white">
               <h2 className="text-4xl md:text-7xl font-black mb-6 tracking-tighter leading-none">
-                Hungry? Order <span className="text-yellow-400">ASAP</span>.
+                Hungry? Order <span className="text-yellow-400">Joviva</span>.
               </h2>
               <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto font-bold">
                 The fastest food delivery in Ghana. Freshly prepared meals from your favorite local restaurants delivered right to your doorstep.
@@ -88,7 +88,7 @@ export default function App() {
       
       {/* Floating WhatsApp 24/7 Agent Button */}
       <a 
-        href="https://wa.me/233548651163?text=Hi%20ASAP%20Foods!%20I'd%20like%20to%20place%20an%20order."
+        href="https://wa.me/233554984950?text=Hi%20Joviva%20Foods!%20I'd%20like%20to%20place%20an%20order."
         target="_blank"
         rel="noopener"
         className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-xl shadow-green-200 hover:shadow-2xl hover:-translate-y-1 transition-all flex items-center gap-3 group"

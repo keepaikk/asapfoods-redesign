@@ -21,7 +21,7 @@ export default function Hero() {
             className="hero-content"
           >
             <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-gray-900 leading-[0.95] mb-8">
-              Hungry? Order <span className="text-orange-600">ASAP</span>.
+              Hungry? Order <span className="text-orange-600">Joviva</span>.
             </h1>
             <p className="text-xl text-gray-600 mb-10 max-w-lg leading-relaxed font-medium">
               The fastest food delivery in Ghana. Freshly prepared meals from your favorite local restaurants delivered right to your doorstep.
@@ -40,7 +40,7 @@ export default function Hero() {
 
             <div className="flex flex-wrap gap-4">
               <a 
-                href="https://wa.me/233548651163?text=Hi%20ASAP%20Foods!%20I'd%20like%20to%20place%20an%20order."
+                href="https://wa.me/233554984950?text=Hi%20Joviva%20Foods!%20I'd%20like%20to%20place%20an%20order."
                 target="_blank"
                 className="flex items-center gap-3 px-6 py-4 rounded-full bg-green-500 text-white font-bold text-sm shadow-lg shadow-green-200 hover:bg-green-600 transition-all hover:shadow-xl hover:-translate-y-1">
                 <MessageCircle className="h-5 w-5" />

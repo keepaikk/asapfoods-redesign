@@ -19,8 +19,8 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center gap-1">
             <img src="/images/logo.jpg" alt="ASAP Foods" className="h-10 w-10 rounded-full object-cover" />
-            <span className="text-2xl font-black tracking-tighter text-orange-600">ASAP</span>
-            <span className="text-2xl font-black tracking-tighter text-yellow-500">FOODS</span>
+            <span className="text-2xl font-black tracking-tighter text-orange-600">Joviva</span>
+            <span className="text-2xl font-black tracking-tighter text-yellow-500">Foods</span>
           </div>
 
           {/* Desktop Nav */}
@@ -58,7 +58,7 @@ export default function Navbar() {
                 <SheetHeader>
                   <SheetTitle className="text-left flex items-center gap-2">
                     <UtensilsCrossed className="h-6 w-6 text-orange-600" />
-                    ASAP FOODS
+                    Joviva Foods
                   </SheetTitle>
                 </SheetHeader>
                 <div className="flex flex-col gap-4 mt-8">
