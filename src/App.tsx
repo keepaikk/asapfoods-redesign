@@ -4,6 +4,7 @@ import MenuSection from '@/components/MenuSection';
 import Footer from '@/components/Footer';
 import { EVENT_BANNER } from '@/constants';
 import { motion } from 'motion/react';
+import { MessageCircle } from 'lucide-react';
 
 export default function App() {
   return (
@@ -37,14 +38,15 @@ export default function App() {
         </section>
 
         {/* Event Banner */}
-        <section className="py-12">
+        <section className="py-8">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="rounded-[30px] overflow-hidden shadow-2xl">
+              className="rounded-[24px] overflow-hidden shadow-xl max-w-2xl mx-auto"
+            >
               <img 
                 src={EVENT_BANNER} 
                 alt="ASAP Foods Event" 
@@ -83,6 +85,17 @@ export default function App() {
         </section>
       </main>
       <Footer />
+      
+      {/* Floating WhatsApp 24/7 Agent Button */}
+      <a 
+        href="https://wa.me/233548651163?text=Hi%20ASAP%20Foods!%20I'd%20like%20to%20place%20an%20order."
+        target="_blank"
+        rel="noopener"
+        className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-xl shadow-green-200 hover:shadow-2xl hover:-translate-y-1 transition-all flex items-center gap-3 group"
+      >
+        <MessageCircle className="h-7 w-7" />
+        <span className="hidden group-hover:block text-sm font-bold whitespace-nowrap">24/7 AI Agent</span>
+      </a>
     </div>
   );
 }

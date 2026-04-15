@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { motion } from 'motion/react';
-import { Search } from 'lucide-react';
+import { Search, MessageCircle } from 'lucide-react';
 
 export default function Hero() {
   const categories = [
@@ -39,19 +39,18 @@ export default function Hero() {
             </div>
 
             <div className="flex flex-wrap gap-4">
-              {categories.map((cat) => (
-                <div 
-                  key={cat.name}
-                  className={`flex items-center gap-2 px-5 py-3 rounded-2xl border font-bold text-sm transition-all cursor-pointer ${
-                    cat.active 
-                      ? 'bg-yellow-400 border-yellow-400 text-white shadow-lg shadow-yellow-200' 
-                      : 'bg-white border-gray-100 text-gray-600 hover:border-orange-200'
-                  }`}
-                >
-                  <span className="text-xl">{cat.icon}</span>
-                  {cat.name}
-                </div>
-              ))}
+              <a 
+                href="https://wa.me/233548651163?text=Hi%20ASAP%20Foods!%20I'd%20like%20to%20place%20an%20order."
+                target="_blank"
+                className="flex items-center gap-3 px-6 py-4 rounded-full bg-green-500 text-white font-bold text-sm shadow-lg shadow-green-200 hover:bg-green-600 transition-all hover:shadow-xl hover:-translate-y-1">
+                <MessageCircle className="h-5 w-5" />
+                Order via WhatsApp (24/7)
+              </a>
+              <a 
+                href="#menu"
+                className="flex items-center gap-3 px-6 py-4 rounded-full bg-white border border-gray-200 text-gray-700 font-bold text-sm hover:border-orange-300 hover:text-orange-600 transition-all">
+                View Menu
+              </a>
             </div>
           </motion.div>
 
