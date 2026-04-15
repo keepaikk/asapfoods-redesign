@@ -18,6 +18,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center gap-1">
+            <img src="/images/logo.jpg" alt="ASAP Foods" className="h-10 w-10 rounded-full object-cover" />
             <span className="text-2xl font-black tracking-tighter text-orange-600">ASAP</span>
             <span className="text-2xl font-black tracking-tighter text-yellow-500">FOODS</span>
           </div>

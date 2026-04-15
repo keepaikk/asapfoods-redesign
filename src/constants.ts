@@ -16,7 +16,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Savory fried rice with vegetables and your choice of protein.',
     price: 40,
     category: 'Fried Rice',
-    image: 'https://images.pexels.com/photos/32612771/pexels-photo-32612771.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: '/images/menu-fried-rice.jpg',
     featured: true,
     popular: true,
   },
@@ -64,7 +64,9 @@ export const MENU_ITEMS: MenuItem[] = [
   },
 ];
 
-export const HERO_IMAGE = 'https://images.pexels.com/photos/18805640/pexels-photo-18805640.jpeg?auto=compress&cs=tinysrgb&w=1000';
+export const HERO_IMAGE = '/images/hero.jpg';
+export const LOGO_IMAGE = '/images/logo.jpg';
+export const EVENT_BANNER = '/images/event-banner.jpg';
 
 export const CATEGORIES = ['All', 'Fried Rice', 'Plain Rice', 'Ampesi', 'Jollof', 'Wakye', 'Offers'];
 

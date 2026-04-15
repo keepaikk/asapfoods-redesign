@@ -1,7 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { motion } from 'motion/react';
 import { Search } from 'lucide-react';
-import { HERO_IMAGE } from '@/constants';
 
 export default function Hero() {
   const categories = [
@@ -64,10 +63,9 @@ export default function Hero() {
           >
             <div className="relative aspect-[4/5] md:aspect-square bg-orange-600 rounded-[40px] overflow-hidden flex items-center justify-center p-6 md:p-10">
               <img 
-                src={HERO_IMAGE} 
+                src="/images/hero.jpg" 
                 alt="Delicious Jollof Rice" 
                 className="w-full h-full object-cover rounded-[30px] shadow-2xl"
-                referrerPolicy="no-referrer"
                 loading="eager"
               />
               

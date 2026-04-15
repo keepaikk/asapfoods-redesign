@@ -2,6 +2,7 @@ import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import MenuSection from '@/components/MenuSection';
 import Footer from '@/components/Footer';
+import { EVENT_BANNER } from '@/constants';
 import { motion } from 'motion/react';
 
 export default function App() {
@@ -32,6 +33,25 @@ export default function App() {
                 <span className="text-[10px] font-bold uppercase tracking-[2px] opacity-60">User Rating</span>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Event Banner */}
+        <section className="py-12">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="rounded-[30px] overflow-hidden shadow-2xl">
+              <img 
+                src={EVENT_BANNER} 
+                alt="ASAP Foods Event" 
+                className="w-full h-auto object-cover"
+                loading="lazy"
+              />
+            </motion.div>
           </div>
         </section>
 
