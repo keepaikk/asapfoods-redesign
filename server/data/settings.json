@@ -1,0 +1,10 @@
+[
+  {
+    "id": "site",
+    "heroImage": "http://localhost:3000/uploads/menu/a88f5c30-08dc-4c3b-b1ca-21d13f2c63d1.jpg",
+    "logoImage": "/images/logo.jpg",
+    "eventBanner": "/images/event-banner.jpg",
+    "phone": "233554984950",
+    "whatsappMessage": "Hi Joviva Foods! I'd like to place an order."
+  }
+]
