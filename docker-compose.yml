@@ -7,15 +7,17 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3001:3001"
+    env_file:
+      - .env
     environment:
       - PORT=3001
       - NODE_ENV=production
-      - DB_TYPE=${DB_TYPE:-json}
       - DATA_DIR=/app/data
-      # Add your secrets in Dokploy UI
     volumes:
       - backend-data:/app/data
     restart: unless-stopped
+    networks:
+      - joviva-network
 
   frontend:
     build:
@@ -26,6 +28,13 @@ services:
     environment:
       - NODE_ENV=production
     restart: unless-stopped
+    networks:
+      - joviva-network
 
 volumes:
   backend-data:
+    driver: local
+
+networks:
+  joviva-network:
+    driver: bridge
