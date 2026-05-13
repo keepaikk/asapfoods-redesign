@@ -1,18 +1,56 @@
-import { useState } from 'react';
-import { MENU_ITEMS, CATEGORIES } from '@/constants';
+import { useState, useEffect } from 'react';
+import { api } from '@/lib/api';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ShoppingCart, Star, Plus } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+
+interface MenuItem {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  category: string;
+  image: string;
+  popular?: boolean;
+  featured?: boolean;
+}
 
 export default function MenuSection() {
   const [activeCategory, setActiveCategory] = useState('All');
+  const [items, setItems] = useState<MenuItem[]>([]);
+  const [categories, setCategories] = useState<string[]>(['All']);
+  const [loading, setLoading] = useState(true);
 
-  const filteredItems = activeCategory === 'All' 
-    ? MENU_ITEMS 
-    : MENU_ITEMS.filter(item => item.category === activeCategory);
+  useEffect(() => {
+    Promise.all([api.getMenu(), api.getCategories()])
+      .then(([menuItems, cats]) => {
+        setItems(menuItems);
+        setCategories(['All', ...cats]);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setLoading(false);
+      });
+  }, []);
+
+  const filteredItems =
+    activeCategory === 'All'
+      ? items
+      : items.filter((item) => item.category === activeCategory);
+
+  if (loading) {
+    return (
+      <section id="menu" className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="text-gray-500">Loading menu...</div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="menu" className="py-24 bg-white">
@@ -27,7 +65,7 @@ export default function MenuSection() {
         <Tabs defaultValue="All" className="w-full" onValueChange={setActiveCategory}>
           <div className="flex justify-center mb-12 overflow-x-auto pb-4">
             <TabsList className="bg-gray-100/50 p-1 rounded-full h-14 border border-gray-200">
-              {CATEGORIES.map((category) => (
+              {categories.map((category) => (
                 <TabsTrigger
                   key={category}
                   value={category}

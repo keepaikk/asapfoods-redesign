@@ -3,9 +3,11 @@ import { ShoppingCart, Menu, X, UtensilsCrossed } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetHeader } from '@/components/ui/sheet';
 import { motion, AnimatePresence } from 'motion/react';
+import { useSettings } from '@/hooks/useSettings';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { settings } = useSettings();
 
   const navLinks = [
     { name: 'Home', href: '#' },
@@ -18,7 +20,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center gap-1">
-            <img src="/images/logo.jpg" alt="Joviva Foods" className="h-12 w-auto object-contain" />
+            <img src={settings?.logoImage || '/images/logo.jpg'} alt="Joviva Foods" className="h-12 w-auto object-contain" />
             <span className="text-2xl font-black tracking-tighter text-orange-600">Joviva</span>
             <span className="text-2xl font-black tracking-tighter text-yellow-500">Foods</span>
           </div>
