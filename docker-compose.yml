@@ -10,6 +10,8 @@ services:
     environment:
       - PORT=3001
       - NODE_ENV=production
+      - DB_TYPE=${DB_TYPE:-json}
+      - DATA_DIR=/app/data
       # Add your secrets in Dokploy UI
     volumes:
       - backend-data:/app/data
