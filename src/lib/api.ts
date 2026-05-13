@@ -50,6 +50,7 @@ export const api = {
       return r.json();
     });
   },
+  verify: () => fetchJson<any>('/api/auth/verify'),
   getSettings: () => fetchJson<any>('/api/settings'),
   updateSettings: (data: any) =>
     fetchJson<any>('/api/settings', { method: 'PATCH', body: JSON.stringify(data) }),

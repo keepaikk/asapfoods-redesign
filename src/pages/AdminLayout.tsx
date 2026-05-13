@@ -1,10 +1,18 @@
-import { Outlet, Link, useLocation } from 'react-router-dom';
+import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { UtensilsCrossed, LogOut, Settings } from 'lucide-react';
+import { useEffect } from 'react';
 
 export default function AdminLayout() {
   const { isAuthenticated, loading } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!loading && !isAuthenticated) {
+      navigate('/login', { replace: true });
+    }
+  }, [loading, isAuthenticated, navigate]);
 
   if (loading) {
     return (
@@ -15,14 +23,17 @@ export default function AdminLayout() {
   }
 
   if (!isAuthenticated) {
-    window.location.href = '/login';
-    return null;
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-gray-500">Redirecting to login...</div>
+      </div>
+    );
   }
 
   const logout = () => {
     localStorage.removeItem('adminToken');
     localStorage.removeItem('adminEmail');
-    window.location.href = '/login';
+    navigate('/login', { replace: true });
   };
 
   const navLink = (to: string, label: string, icon?: React.ReactNode) => (
