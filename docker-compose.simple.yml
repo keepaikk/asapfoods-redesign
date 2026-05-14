@@ -1,0 +1,28 @@
+services:
+  backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    environment:
+      - PORT=3001
+      - NODE_ENV=production
+      - DATA_DIR=/app/data
+    volumes:
+      - backend-data:/app/data
+    ports:
+      - "3001:3001"
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=production
+    ports:
+      - "80:80"
+    restart: unless-stopped
+
+volumes:
+  backend-data:
+    driver: local
