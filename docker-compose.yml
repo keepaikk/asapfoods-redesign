@@ -19,16 +19,16 @@ services:
       dockerfile: Dockerfile
     environment:
       - NODE_ENV=production
-    ports:
+    expose:
       - "80"
     networks:
       - dokploy-network
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.joviva.rule=Host(`jovivafoods.com`) || Host(`www.jovivafoods.com`)"
-      - "traefik.http.routers.joviva.entrypoints=websecure"
-      - "traefik.http.routers.joviva.tls.certResolver=letsencrypt"
-      - "traefik.http.services.joviva.loadbalancer.server.port=80"
+      - "traefik.http.routers.jovivafoods.rule=Host(`jovivafoods.com`) || Host(`www.jovivafoods.com`)"
+      - "traefik.http.routers.jovivafoods.entrypoints=websecure"
+      - "traefik.http.routers.jovivafoods.tls.certResolver=letsencrypt"
+      - "traefik.http.services.jovivafoods.loadbalancer.server.port=80"
     restart: unless-stopped
 
 volumes:
