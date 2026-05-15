@@ -12,6 +12,9 @@ const DEFAULTS: SiteSettings = {
   eventBanner: '/images/event-banner.jpg',
   phone: '233554984950',
   whatsappMessage: "Hi Joviva Foods! I'd like to place an order.",
+  restaurantLat: 5.6891,
+  restaurantLng: -0.1869,
+  restaurantAddress: 'Kwabenya, Accra, Ghana',
 };
 
 function getSettings(): SiteSettings {

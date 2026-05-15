@@ -8,6 +8,9 @@ interface SiteSettings {
   eventBanner: string;
   phone: string;
   whatsappMessage: string;
+  restaurantLat?: number;
+  restaurantLng?: number;
+  restaurantAddress?: string;
 }
 
 function ImageField({
@@ -94,6 +97,9 @@ export default function AdminSettings() {
     eventBanner: '',
     phone: '',
     whatsappMessage: '',
+    restaurantLat: 5.6891,
+    restaurantLng: -0.1869,
+    restaurantAddress: 'Kwabenya, Accra, Ghana',
   });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -159,6 +165,39 @@ export default function AdminSettings() {
               className="w-full border rounded-lg px-3 py-2 text-sm"
               required
             />
+          </div>
+          <div className="md:col-span-2 border-t pt-4 mt-2">
+            <p className="text-xs font-bold uppercase mb-3 text-gray-500">Restaurant Location</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <label className="block text-xs font-bold uppercase mb-1">Latitude</label>
+                <input
+                  type="number"
+                  step="any"
+                  value={settings.restaurantLat ?? ''}
+                  onChange={(e) => setSettings({ ...settings, restaurantLat: parseFloat(e.target.value) })}
+                  className="w-full border rounded-lg px-3 py-2 text-sm"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase mb-1">Longitude</label>
+                <input
+                  type="number"
+                  step="any"
+                  value={settings.restaurantLng ?? ''}
+                  onChange={(e) => setSettings({ ...settings, restaurantLng: parseFloat(e.target.value) })}
+                  className="w-full border rounded-lg px-3 py-2 text-sm"
+                />
+              </div>
+              <div className="md:col-span-1">
+                <label className="block text-xs font-bold uppercase mb-1">Address</label>
+                <input
+                  value={settings.restaurantAddress || ''}
+                  onChange={(e) => setSettings({ ...settings, restaurantAddress: e.target.value })}
+                  className="w-full border rounded-lg px-3 py-2 text-sm"
+                />
+              </div>
+            </div>
           </div>
         </div>
         <button

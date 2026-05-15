@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ShoppingCart, Menu, X, UtensilsCrossed } from 'lucide-react';
+import { ShoppingCart, Menu, X, UtensilsCrossed, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetHeader } from '@/components/ui/sheet';
 import { motion, AnimatePresence } from 'motion/react';
@@ -14,6 +14,24 @@ export default function Navbar() {
     { name: 'Menu', href: '#menu' },
     { name: 'Offers', href: '#offers' },
   ];
+
+  const handleDownloadMenu = async () => {
+    const bannerUrl = settings?.eventBanner || '/images/event-banner.jpg';
+    try {
+      const response = await fetch(bannerUrl);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'joviva-menu.jpg';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    } catch {
+      window.open(bannerUrl, '_blank');
+    }
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-bottom border-gray-100">
@@ -36,6 +54,13 @@ export default function Navbar() {
                 {link.name}
               </a>
             ))}
+            <button
+              onClick={handleDownloadMenu}
+              className="text-xs font-bold text-gray-600 hover:text-orange-600 transition-colors uppercase tracking-wider flex items-center gap-1"
+            >
+              <Download className="h-3 w-3" />
+              Download Menu
+            </button>
             <Button className="bg-orange-600 hover:bg-orange-700 text-white rounded-full px-6 font-bold flex items-center gap-2 h-10">
               <ShoppingCart className="h-4 w-4" />
               <span>Cart (0)</span>
@@ -74,6 +99,16 @@ export default function Navbar() {
                       {link.name}
                     </a>
                   ))}
+                  <button
+                    onClick={() => {
+                      setIsOpen(false);
+                      handleDownloadMenu();
+                    }}
+                    className="text-lg font-medium text-gray-900 hover:text-orange-600 transition-colors flex items-center gap-2"
+                  >
+                    <Download className="h-5 w-5" />
+                    Download Menu
+                  </button>
                 </div>
               </SheetContent>
             </Sheet>

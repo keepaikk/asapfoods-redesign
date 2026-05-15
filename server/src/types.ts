@@ -36,4 +36,7 @@ export interface SiteSettings {
   eventBanner: string;
   phone: string;
   whatsappMessage: string;
+  restaurantLat?: number;
+  restaurantLng?: number;
+  restaurantAddress?: string;
 }

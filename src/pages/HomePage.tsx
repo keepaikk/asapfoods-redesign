@@ -1,4 +1,3 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import MenuSection from '@/components/MenuSection';
@@ -37,26 +36,6 @@ export default function HomePage() {
                 <span className="text-[10px] font-bold uppercase tracking-[2px] opacity-60">User Rating</span>
               </div>
             </div>
-          </div>
-        </section>
-
-        {/* Event Banner */}
-        <section className="py-8">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="rounded-[24px] overflow-hidden shadow-xl max-w-2xl mx-auto"
-            >
-              <img
-                src={settings?.eventBanner || '/images/event-banner.jpg'}
-                alt="Joviva Foods Event"
-                className="w-full h-auto object-cover"
-                loading="lazy"
-              />
-            </motion.div>
           </div>
         </section>
 
