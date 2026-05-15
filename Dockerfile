@@ -1,12 +1,35 @@
-FROM node:22-alpine AS builder
+# Stage 1: Build frontend
+FROM node:22-alpine AS frontend-builder
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
 RUN npm run build
 
-FROM nginx:alpine
-COPY --from=builder /app/dist/ /usr/share/nginx/html/
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+# Stage 2: Build backend
+FROM node:22-alpine AS backend-builder
+WORKDIR /app
+COPY server/package*.json ./
+RUN npm install
+COPY server/. .
+RUN npm run build
+
+# Stage 3: Production - run backend + serve frontend
+FROM node:22-alpine
+WORKDIR /app
+
+# Install backend production deps
+COPY server/package*.json ./
+RUN npm install --production
+
+# Copy backend compiled code
+COPY --from=backend-builder /app/dist ./dist
+
+# Copy frontend built assets
+COPY --from=frontend-builder /app/dist ./dist-frontend
+
+# Move frontend into place where server expects it
+RUN mv ./dist-frontend ../dist
+
+EXPOSE 3001
+CMD ["node", "dist/index.js"]
