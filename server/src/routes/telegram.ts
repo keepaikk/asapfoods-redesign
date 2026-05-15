@@ -102,31 +102,147 @@ if (TOKEN) {
   }
 }
 
+const mainKeyboard = {
+  reply_markup: {
+    inline_keyboard: [
+      [
+        { text: '📋 View Menu', callback_data: 'menu' },
+        { text: '➕ Add Item', callback_data: 'add_help' },
+      ],
+      [
+        { text: '🖼 Update Hero', callback_data: 'hero_help' },
+        { text: '🖼 Update Logo', callback_data: 'logo_help' },
+        { text: '🖼 Update Banner', callback_data: 'banner_help' },
+      ],
+      [
+        { text: '🗑 Delete Item', callback_data: 'delete_list' },
+        { text: 'ℹ️ Help', callback_data: 'help' },
+      ],
+    ],
+  },
+};
+
+function sendMenu(chatId: number) {
+  const items = menuDb.findAll().filter((i) => i.available !== false);
+  if (items.length === 0) {
+    bot?.sendMessage(chatId, 'No menu items found.', mainKeyboard);
+    return;
+  }
+  const lines = items.map(
+    (i) => `• ${i.name} — GH₵${i.price} (${i.category})`
+  );
+  bot?.sendMessage(chatId, `*Current Menu:*\n\n${lines.join('\n')}`, {
+    parse_mode: 'Markdown',
+    ...mainKeyboard,
+  });
+}
+
 if (bot) {
   bot.onText(/\/start/, (msg: any) => {
     bot?.sendMessage(
       msg.chat.id,
-      'Welcome to Joviva Foods bot!\n\n' +
-      '*Menu Management:*\n' +
-      'Send a photo with caption:\nName | Price | Category | Description\n\n' +
-      '*Site Settings:*\n' +
-      'Send a photo with caption #hero, #logo, or #banner to update that image.\n\n' +
-      'Commands:\n/menu - View menu\n/settings - View site settings'
+      '*Welcome to Joviva Foods Bot!* 🍲\n\n' +
+      'Manage your restaurant menu and site images right here.\n\n' +
+      'Choose an action below:',
+      mainKeyboard,
     );
   });
 
-  bot.onText(/\/menu/, async (msg: any) => {
-    const items = menuDb.findAll().filter((i) => i.available !== false);
-    if (items.length === 0) {
-      bot?.sendMessage(msg.chat.id, 'No menu items found.');
-      return;
+  bot.on('callback_query', async (query: any) => {
+    const chatId = query.message?.chat?.id;
+    const data = query.data;
+    if (!chatId || !data) return;
+
+    await bot?.answerCallbackQuery(query.id);
+
+    switch (data) {
+      case 'menu':
+        sendMenu(chatId);
+        break;
+      case 'add_help':
+        bot?.sendMessage(
+          chatId,
+          '*How to add a menu item:*\n\n' +
+          '1. Take or upload a photo\n' +
+          '2. Add this caption:\n' +
+          '`Name | Price | Category | Description`\n\n' +
+          'Example:\n' +
+          '`Jollof Rice | 40 | Rice Dishes | Spicy Ghanaian jollof with chicken`',
+          { parse_mode: 'Markdown', ...mainKeyboard },
+        );
+        break;
+      case 'hero_help':
+        bot?.sendMessage(
+          chatId,
+          '*Update Hero Image:*\n\n' +
+          'Send a photo with caption: `#hero`',
+          { parse_mode: 'Markdown', ...mainKeyboard },
+        );
+        break;
+      case 'logo_help':
+        bot?.sendMessage(
+          chatId,
+          '*Update Logo:*\n\n' +
+          'Send a photo with caption: `#logo`',
+          { parse_mode: 'Markdown', ...mainKeyboard },
+        );
+        break;
+      case 'banner_help':
+        bot?.sendMessage(
+          chatId,
+          '*Update Banner:*\n\n' +
+          'Send a photo with caption: `#banner`',
+          { parse_mode: 'Markdown', ...mainKeyboard },
+        );
+        break;
+      case 'delete_list': {
+        const items = menuDb.findAll();
+        if (items.length === 0) {
+          bot?.sendMessage(chatId, 'No menu items to delete.', mainKeyboard);
+          return;
+        }
+        const keyboard = items.map((i) => [
+          { text: `🗑 ${i.name} — GH₵${i.price}`, callback_data: `delete:${i.id}` },
+        ]);
+        bot?.sendMessage(chatId, '*Tap an item to delete it:*', {
+          parse_mode: 'Markdown',
+          reply_markup: { inline_keyboard: keyboard },
+        });
+        break;
+      }
+      case 'help':
+        bot?.sendMessage(
+          chatId,
+          '*Joviva Foods Bot Commands:*\n\n' +
+          '📋 *View Menu* — See all current menu items\n' +
+          '➕ *Add Item* — Send photo + `Name | Price | Category | Description`\n' +
+          '🖼 *Update Images* — Send photo + `#hero`, `#logo`, or `#banner`\n' +
+          '🗑 *Delete Item* — Remove items from the menu\n\n' +
+          'All changes sync instantly to the website!',
+          { parse_mode: 'Markdown', ...mainKeyboard },
+        );
+        break;
+      default: {
+        if (data.startsWith('delete:')) {
+          const itemId = data.replace('delete:', '');
+          const item = menuDb.findById(itemId);
+          if (item) {
+            menuDb.delete(itemId);
+            bot?.sendMessage(chatId, `Deleted *${item.name}* ✅`, {
+              parse_mode: 'Markdown',
+              ...mainKeyboard,
+            });
+          } else {
+            bot?.sendMessage(chatId, 'Item not found.', mainKeyboard);
+          }
+        }
+        break;
+      }
     }
-    const lines = items.map(
-      (i) => `• ${i.name} — GH₵${i.price} (${i.category})`
-    );
-    bot?.sendMessage(msg.chat.id, `*Current Menu:*\n\n${lines.join('\n')}`, {
-      parse_mode: 'Markdown',
-    });
+  });
+
+  bot.onText(/\/menu/, async (msg: any) => {
+    sendMenu(msg.chat.id);
   });
 
   bot.onText(/\/settings/, async (msg: any) => {
@@ -138,23 +254,24 @@ if (bot) {
       `Logo Image: ${settings.logoImage}\n` +
       `Event Banner: ${settings.eventBanner}\n` +
       `Phone: ${settings.phone}\n\n` +
-      `To update an image, send a photo with caption #hero, #logo, or #banner.`
+      `To update an image, send a photo with caption #hero, #logo, or #banner.`,
+      mainKeyboard,
     );
   });
 
   bot.onText(/\/delete/, async (msg: any) => {
     const items = menuDb.findAll();
     if (items.length === 0) {
-      bot?.sendMessage(msg.chat.id, 'No menu items to delete.');
+      bot?.sendMessage(msg.chat.id, 'No menu items to delete.', mainKeyboard);
       return;
     }
-    const lines = items.map(
-      (i, idx) => `${idx + 1}. ${i.name} — GH₵${i.price} (${i.category})`
-    );
-    bot?.sendMessage(
-      msg.chat.id,
-      `*Delete an item:*\n\n${lines.join('\n')}\n\nReply with the item name to delete it.`
-    );
+    const keyboard = items.map((i) => [
+      { text: `🗑 ${i.name} — GH₵${i.price}`, callback_data: `delete:${i.id}` },
+    ]);
+    bot?.sendMessage(msg.chat.id, '*Tap an item to delete it:*', {
+      parse_mode: 'Markdown',
+      reply_markup: { inline_keyboard: keyboard },
+    });
   });
 
   bot.on('text', async (msg: any) => {
