@@ -4,8 +4,9 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Plus } from 'lucide-react';
+import { Plus, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { useCart } from '@/hooks/useCart';
 
 interface MenuItem {
   id: string;
@@ -23,6 +24,8 @@ export default function MenuSection() {
   const [items, setItems] = useState<MenuItem[]>([]);
   const [categories, setCategories] = useState<string[]>(['All']);
   const [loading, setLoading] = useState(true);
+  const [addedId, setAddedId] = useState<string | null>(null);
+  const { dispatch } = useCart();
 
   useEffect(() => {
     Promise.all([api.getMenu(), api.getCategories()])
@@ -36,6 +39,15 @@ export default function MenuSection() {
         setLoading(false);
       });
   }, []);
+
+  const handleAdd = (item: MenuItem) => {
+    dispatch({
+      type: 'ADD',
+      item: { id: item.id, name: item.name, price: item.price, image: item.image },
+    });
+    setAddedId(item.id);
+    setTimeout(() => setAddedId(null), 1500);
+  };
 
   const filteredItems =
     activeCategory === 'All'
@@ -111,9 +123,25 @@ export default function MenuSection() {
                     </p>
                   </CardHeader>
                   <CardFooter className="pb-6 pt-2">
-                    <Button className="w-full bg-gray-900 hover:bg-orange-600 text-white rounded-full h-12 font-bold group transition-all">
-                      Add to Cart
-                      <Plus className="ml-2 h-4 w-4 group-hover:rotate-90 transition-transform" />
+                    <Button
+                      onClick={() => handleAdd(item)}
+                      className={`w-full rounded-full h-12 font-bold group transition-all ${
+                        addedId === item.id
+                          ? 'bg-green-500 hover:bg-green-600 text-white'
+                          : 'bg-gray-900 hover:bg-orange-600 text-white'
+                      }`}
+                    >
+                      {addedId === item.id ? (
+                        <>
+                          Added
+                          <Check className="ml-2 h-4 w-4" />
+                        </>
+                      ) : (
+                        <>
+                          Add to Cart
+                          <Plus className="ml-2 h-4 w-4 group-hover:rotate-90 transition-transform" />
+                        </>
+                      )}
                     </Button>
                   </CardFooter>
                 </Card>
