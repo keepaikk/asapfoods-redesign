@@ -25,11 +25,8 @@ RUN npm install --production
 # Copy backend compiled code
 COPY --from=backend-builder /app/dist ./dist
 
-# Copy frontend built assets
-COPY --from=frontend-builder /app/dist ./dist-frontend
-
-# Move frontend into place where server expects it
-RUN mv ./dist-frontend ../dist
+# Copy frontend built assets to /dist (server looks for ../dist from /app)
+COPY --from=frontend-builder /app/dist /dist
 
 EXPOSE 3001
 CMD ["node", "dist/index.js"]

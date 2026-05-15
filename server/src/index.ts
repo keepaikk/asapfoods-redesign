@@ -28,14 +28,12 @@ app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok', time: new Date().toISOString() });
 });
 
-// Serve frontend static files in production
-if (process.env.NODE_ENV === 'production') {
-  const frontendDist = path.join(process.cwd(), '../dist');
-  app.use(express.static(frontendDist));
-  app.get('*', (_req, res) => {
-    res.sendFile(path.join(frontendDist, 'index.html'));
-  });
-}
+// Serve frontend static files
+const frontendDist = path.join(process.cwd(), '../dist');
+app.use(express.static(frontendDist));
+app.get('*', (_req, res) => {
+  res.sendFile(path.join(frontendDist, 'index.html'));
+});
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
