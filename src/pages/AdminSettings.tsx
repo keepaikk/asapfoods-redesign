@@ -6,8 +6,13 @@ interface SiteSettings {
   heroImage: string;
   logoImage: string;
   eventBanner: string;
+  galleryImage1: string;
+  galleryImage2: string;
+  galleryImage3: string;
   phone: string;
   whatsappMessage: string;
+  instagramUrl?: string;
+  tiktokUrl?: string;
   restaurantLat?: number;
   restaurantLng?: number;
   restaurantAddress?: string;
@@ -95,8 +100,13 @@ export default function AdminSettings() {
     heroImage: '',
     logoImage: '',
     eventBanner: '',
+    galleryImage1: '',
+    galleryImage2: '',
+    galleryImage3: '',
     phone: '',
     whatsappMessage: '',
+    instagramUrl: 'https://instagram.com/jovivafoods',
+    tiktokUrl: 'https://tiktok.com/@jovivafoods',
     restaurantLat: 5.6891,
     restaurantLng: -0.1869,
     restaurantAddress: 'Kwabenya, Accra, Ghana',
@@ -141,12 +151,25 @@ export default function AdminSettings() {
             value={settings.logoImage}
             onChange={(url) => setSettings({ ...settings, logoImage: url })}
           />
-          <div className="md:col-span-2">
-            <ImageField
-              label="Event Banner"
-              value={settings.eventBanner}
-              onChange={(url) => setSettings({ ...settings, eventBanner: url })}
-            />
+          <div className="md:col-span-2 border-t pt-4 mt-2">
+            <p className="text-xs font-bold uppercase mb-3 text-gray-500">Restaurant Gallery</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <ImageField
+                label="Gallery Image 1"
+                value={settings.galleryImage1}
+                onChange={(url) => setSettings({ ...settings, galleryImage1: url })}
+              />
+              <ImageField
+                label="Gallery Image 2"
+                value={settings.galleryImage2}
+                onChange={(url) => setSettings({ ...settings, galleryImage2: url })}
+              />
+              <ImageField
+                label="Gallery Image 3"
+                value={settings.galleryImage3}
+                onChange={(url) => setSettings({ ...settings, galleryImage3: url })}
+              />
+            </div>
           </div>
           <div>
             <label className="block text-xs font-bold uppercase mb-1">WhatsApp Phone Number</label>
@@ -166,6 +189,30 @@ export default function AdminSettings() {
               required
             />
           </div>
+          <div className="md:col-span-2 border-t pt-4 mt-2">
+            <p className="text-xs font-bold uppercase mb-3 text-gray-500">Social Links</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-bold uppercase mb-1">Instagram URL</label>
+                <input
+                  value={settings.instagramUrl || ''}
+                  onChange={(e) => setSettings({ ...settings, instagramUrl: e.target.value })}
+                  className="w-full border rounded-lg px-3 py-2 text-sm"
+                  placeholder="https://instagram.com/jovivafoods"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase mb-1">TikTok URL</label>
+                <input
+                  value={settings.tiktokUrl || ''}
+                  onChange={(e) => setSettings({ ...settings, tiktokUrl: e.target.value })}
+                  className="w-full border rounded-lg px-3 py-2 text-sm"
+                  placeholder="https://tiktok.com/@jovivafoods"
+                />
+              </div>
+            </div>
+          </div>
+
           <div className="md:col-span-2 border-t pt-4 mt-2">
             <p className="text-xs font-bold uppercase mb-3 text-gray-500">Restaurant Location</p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

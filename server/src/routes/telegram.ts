@@ -41,8 +41,16 @@ function getSettings(): SiteSettings {
     heroImage: '/images/hero.jpg',
     logoImage: '/images/logo.jpg',
     eventBanner: '/images/event-banner.jpg',
+    galleryImage1: '/images/hero.jpg',
+    galleryImage2: '/images/logo.jpg',
+    galleryImage3: '/images/event-banner.jpg',
     phone: '233554984950',
     whatsappMessage: "Hi Joviva Foods! I'd like to place an order.",
+    instagramUrl: 'https://instagram.com/jovivafoods',
+    tiktokUrl: 'https://tiktok.com/@jovivafoods',
+    restaurantLat: 5.6891,
+    restaurantLng: -0.1869,
+    restaurantAddress: 'Kwabenya, Accra, Ghana',
   };
   settingsDb.create(defaults);
   return defaults;

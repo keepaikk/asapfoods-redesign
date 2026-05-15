@@ -1,7 +1,10 @@
-import { UtensilsCrossed, Phone, Mail, MapPin, Facebook, Instagram, Twitter } from 'lucide-react';
+import { UtensilsCrossed, Phone, Mail, MapPin, Facebook, Instagram } from 'lucide-react';
 import { PHOTO_CREDITS } from '@/constants';
+import { useSettings } from '@/hooks/useSettings';
 
 export default function Footer() {
+  const { settings } = useSettings();
+
   return (
     <footer className="bg-gray-900 text-gray-300 pt-20 pb-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -16,15 +19,16 @@ export default function Footer() {
               Bringing the authentic flavors of Ghana to your doorstep. Quality ingredients, traditional recipes, and fast delivery.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="h-10 w-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-orange-500 hover:text-white transition-all">
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a href="https://www.instagram.com/jovivafoods" target="_blank" className="h-10 w-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-pink-500 hover:text-white transition-all">
-                <Instagram className="h-5 w-5" />
-              </a>
-              <a href="https://www.tiktok.com/@jovivafoods" target="_blank" className="h-10 w-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-white hover:text-black transition-all text-xs font-bold">
-                Tik
-              </a>
+              {settings?.instagramUrl && (
+                <a href={settings.instagramUrl} target="_blank" rel="noopener" className="h-10 w-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-pink-500 hover:text-white transition-all">
+                  <Instagram className="h-5 w-5" />
+                </a>
+              )}
+              {settings?.tiktokUrl && (
+                <a href={settings.tiktokUrl} target="_blank" rel="noopener" className="h-10 w-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-white hover:text-black transition-all text-xs font-bold">
+                  Tik
+                </a>
+              )}
             </div>
           </div>
 

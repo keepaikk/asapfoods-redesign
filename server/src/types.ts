@@ -34,8 +34,13 @@ export interface SiteSettings {
   heroImage: string;
   logoImage: string;
   eventBanner: string;
+  galleryImage1: string;
+  galleryImage2: string;
+  galleryImage3: string;
   phone: string;
   whatsappMessage: string;
+  instagramUrl?: string;
+  tiktokUrl?: string;
   restaurantLat?: number;
   restaurantLng?: number;
   restaurantAddress?: string;
