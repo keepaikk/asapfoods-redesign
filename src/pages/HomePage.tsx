@@ -81,6 +81,9 @@ export default function HomePage() {
                       alt={`Restaurant gallery ${i + 1}`}
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                       loading="lazy"
+                      decoding="async"
+                      width="400"
+                      height="300"
                     />
                   </motion.div>
                 ))}

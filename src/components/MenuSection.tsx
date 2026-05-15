@@ -105,7 +105,11 @@ export default function MenuSection() {
                       src={item.image}
                       alt={item.name}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      loading="lazy"
+                      decoding="async"
                       referrerPolicy="no-referrer"
+                      width="400"
+                      height="300"
                     />
                     {item.popular && (
                       <Badge className="absolute top-4 left-4 bg-orange-600 text-white border-none px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider">

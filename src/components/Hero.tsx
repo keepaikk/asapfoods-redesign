@@ -151,6 +151,10 @@ export default function Hero() {
                 alt="Delicious Jollof Rice"
                 className="w-full h-full object-cover rounded-[30px] shadow-2xl"
                 loading="eager"
+                fetchpriority="high"
+                decoding="async"
+                width="600"
+                height="600"
               />
 
               {/* Floating Food Cards */}
